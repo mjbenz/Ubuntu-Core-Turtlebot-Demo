@@ -1,0 +1,44 @@
+name: ros-ubuntu-core-turtlebot-demo
+version: 1.0
+summary: ROS Turtlebot Demo for Ubuntu Core
+description: |
+  Robot moves in confined area based on detecting perimeter with robots IR sensors as well as using bump sensor
+  to stop if it impacts something and button 0 to restart movement and buttons B1 and B2 to stop robot.
+confinement: devmode
+
+apps:
+  calibrate:
+    command: rostopic echo /mobile_base/sensors/core
+    plugs:
+    - network
+
+  turtlebot-bringup:
+#    command: roslaunch turtlebot_bringup minimal.launch
+    command: bin/my_export.sh roslaunch turtlebot_bringup minimal.launch
+    plugs:
+    - network
+    - network-bind
+    - serial-port
+
+  move-demo:
+#    command: roslaunch move_confined move_confined.launch
+    command: bin/my_export.sh roslaunch move_confined move_confined.launch
+    plugs:
+    - network
+
+
+parts:
+  ros-project:
+    plugin: catkin
+    source: .
+    catkin-packages:
+    - move_confined
+    stage-packages:
+    - gcc
+    - g++
+    include-roscore: true
+
+  file-copy:
+    plugin: copy
+    files:
+      misc/my_export.sh: bin/
