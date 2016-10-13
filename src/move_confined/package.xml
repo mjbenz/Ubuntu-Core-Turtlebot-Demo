@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>move_confined</name>
-  <version>0.0.0</version>
+  <version>0.3.0</version>
   <description>The move_confined package</description>
   <maintainer email="michael.benz@canonical.com">ubuntu</maintainer>
   <license>BSD</license>
@@ -12,42 +12,14 @@
   <build_depend>roslib</build_depend>
   <build_depend>rospy</build_depend>
   <build_depend>geometry_msgs</build_depend>
-  <build_depend>std_msgs</build_depend>
   <build_depend>kobuki_msgs</build_depend>
   <run_depend>create_node</run_depend>
   <run_depend>roslib</run_depend>
   <run_depend>rospy</run_depend>
   <run_depend>geometry_msgs</run_depend>
-  <run_depend>std_msgs</run_depend>
   <run_depend>kobuki_msgs</run_depend>
-  <run_depend>genpy</run_depend>
-  <run_depend>realsense_camera</run_depend>
-
-  <!-- Entries from here to end added to resolve getting additional turtlebot packages -->
   <run_depend>turtlebot_bringup</run_depend>
-  <run_depend>turtlebot_capabilities</run_depend>
-  <run_depend>turtlebot_description</run_depend>
-  <run_depend>turtlebot_teleop</run_depend>
-  <run_depend>turtlebot_gazebo</run_depend>
-  <run_depend>turtlebot_stage</run_depend>
-  <run_depend>turtlebot_navigation</run_depend>
-  <run_depend>turtlebot_stdr</run_depend>
-  <run_depend>astra_launch</run_depend>
-  <run_depend>zeroconf_avahi</run_depend>
-  <run_depend>yocs_cmd_vel_mux</run_depend>
-  <run_depend>kobuki_capabilities</run_depend>
-  <run_depend>kobuki_node</run_depend>
-  <run_depend>kobuki_bumper2pc</run_depend>
-  <run_depend>kobuki_safety_controller</run_depend>
-  <run_depend>create_node</run_depend>
-  <run_depend>robot_state_publisher</run_depend>
-  <run_depend>robot_pose_ekf</run_depend>
-  <run_depend>diagnostic_aggregator</run_depend>
-  <run_depend>openni2_launch</run_depend>
-  <run_depend>freenect_launch</run_depend>
-  <run_depend>laptop_battery_monitor</run_depend>
+
   <run_depend>rocon_app_manager</run_depend>
-  <run_depend>rocon_bubble_icons</run_depend>
-  <run_depend>depthimage_to_laserscan</run_depend>
-  <!-- end -->
+  <run_depend>kobuki_capabilities</run_depend>
 </package>
