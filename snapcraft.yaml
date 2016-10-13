@@ -1,44 +1,52 @@
-name: ros-ubuntu-core-turtlebot-demo
-version: 1.0
+name: turtlebot-demo
+version: 1.0.1
 summary: ROS Turtlebot Demo for Ubuntu Core
 description: |
   Robot moves in confined area based on detecting perimeter with robots IR sensors as well as using bump sensor
-  to stop if it impacts something and button 0 to restart movement and buttons B1 and B2 to stop robot.
+   to stop if it impacts something and button B0 to restart movement and buttons B1 and B2 to stop robot.
+   Calibrate command will run rostopic echo /mobile_base/sensors/core to displa realtime sensor data.
+   Environment is Kinetic ROS on Ubuntu with additional Turtlebot packages.
 confinement: devmode
+grade: devel
 
 apps:
   calibrate:
-    command: rostopic echo /mobile_base/sensors/core
+    command: bin/calibrate
     plugs:
     - network
+    - network-bind
 
-  turtlebot-bringup:
-#    command: roslaunch turtlebot_bringup minimal.launch
-    command: bin/my_export.sh roslaunch turtlebot_bringup minimal.launch
+  bringup:
+    command: bin/bringup
     plugs:
     - network
     - network-bind
     - serial-port
 
-  move-demo:
-#    command: roslaunch move_confined move_confined.launch
-    command: bin/my_export.sh roslaunch move_confined move_confined.launch
+  demo:
+    command: bin/demo
     plugs:
     - network
-
-
+    - network-bind
 parts:
   ros-project:
     plugin: catkin
     source: .
     catkin-packages:
     - move_confined
+    rosdistro: kinetic
     stage-packages:
-    - gcc
-    - g++
-    include-roscore: true
+    - ros-kinetic-ros-base
+    - ros-kinetic-turtlebot-bringup
+    - ros-kinetic-kobuki-core
+    #- gcc
+    #- g++
+    include-roscore: false
 
   file-copy:
-    plugin: copy
-    files:
-      misc/my_export.sh: bin/
+    plugin: dump
+    source: .
+    organize:
+      setup/calibrate: bin/
+      setup/bringup: bin/
+      setup/demo: bin/
