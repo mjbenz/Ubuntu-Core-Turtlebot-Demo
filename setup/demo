@@ -1,0 +1,12 @@
+#!/bin/sh
+
+#export ROS_MASTER_URI=http://localhost:11311
+export ROS_HOSTNAME=localhost
+export ROS_IP=localhost
+export TURTLEBOT_BASE=kobuki
+source /snap/turtlebot-demo/current/opt/ros/setup.sh
+
+# This assumes Kobuki will be connected at ttyUSB0, if it is another dev the next entry needs to be changed.
+export TURTLEBOT_SERIAL_PORT=/dev/ttyUSB0
+
+exec roslaunch move_confined move_confined.launch
