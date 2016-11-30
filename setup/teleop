@@ -1,21 +1,11 @@
-#!/usr/bin/env python
-import numpy as np
-import pylab as py
+#!/bin/sh
 
+#export ROS_MASTER_URI=http://localhost:11311
+export ROS_HOSTNAME=localhost
+export ROS_IP=localhost
+export TURTLEBOT_BASE=kobuki
 
-f = open("calibrate.conf", "r")
-contents = f.readlines()
-#f.close()
+# This assumes Kobuki will be connected at ttyUSB0, if it is another /dev the next entry needs to be changed.
+export TURTLEBOT_SERIAL_PORT=/dev/ttyUSB0
 
-print type(f)
-if f:
-    for line in f:
-        buffer += line
-f.close()
-
-print contents, type(contents)
-
-print contents.split('= ')
-
-for item in contents:
-    mylist.append(item.split("[")[1].split("]")[0])
+exec roslaunch turtlebot_teleop keyboard_teleop.launch
