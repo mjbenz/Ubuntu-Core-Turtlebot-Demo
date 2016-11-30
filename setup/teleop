@@ -1,0 +1,21 @@
+#!/usr/bin/env python
+import numpy as np
+import pylab as py
+
+
+f = open("calibrate.conf", "r")
+contents = f.readlines()
+#f.close()
+
+print type(f)
+if f:
+    for line in f:
+        buffer += line
+f.close()
+
+print contents, type(contents)
+
+print contents.split('= ')
+
+for item in contents:
+    mylist.append(item.split("[")[1].split("]")[0])
