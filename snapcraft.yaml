@@ -6,16 +6,11 @@ description: |
    to stop if it impacts something and button B0 to restart movement and buttons B1 and B2 to stop robot.
    Calibrate command will run rostopic echo /mobile_base/sensors/core to displa realtime sensor data.
    Environment is Kinetic ROS on Ubuntu with additional Turtlebot packages.
+   github: https://github.com/mjbenz/Ubuntu-Core-Turtlebot-Demo
 confinement: devmode
 grade: devel
 
 apps:
-  calibrate:
-    command: bin/calibrate
-    plugs:
-    - network
-    - network-bind
-
   bringup:
     command: bin/bringup
     plugs:
@@ -28,6 +23,19 @@ apps:
     plugs:
     - network
     - network-bind
+
+  teleop:
+    command: bin/teleop
+    plugs:
+    - network
+    - network-bind
+
+  calibrate:
+    command: bin/calibrate
+    plugs:
+    - network
+    - network-bind
+
 parts:
   ros-project:
     plugin: catkin
@@ -41,12 +49,13 @@ parts:
     - ros-kinetic-kobuki-core
     #- gcc
     #- g++
-    include-roscore: false
+    include-roscore: true
 
   file-copy:
     plugin: dump
     source: .
     organize:
-      setup/calibrate: bin/
       setup/bringup: bin/
       setup/demo: bin/
+      setup/teleop: bin/
+      setup/calibrate: bin/
