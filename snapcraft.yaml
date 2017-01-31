@@ -13,6 +13,7 @@ grade: devel
 apps:
   bringup:
     command: bin/bringup
+    daemon: simple
     plugs:
     - network
     - network-bind
@@ -43,13 +44,17 @@ parts:
     catkin-packages:
     - move_confined
     rosdistro: kinetic
-    stage-packages:
-    - ros-kinetic-ros-base
-    - ros-kinetic-turtlebot-bringup
-    - ros-kinetic-kobuki-core
+    #stage-packages:
+    #- ros-kinetic-ros-base
+    #- ros-kinetic-turtlebot-bringup
+    #- ros-kinetic-kobuki-core
     #- gcc
     #- g++
     include-roscore: true
+      # roscore includes:
+        # ROS Master
+        # ROS Parameter Server
+        # /rosout node (ROS equivalent of stdout/stderr)
 
   file-copy:
     plugin: dump
